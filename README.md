@@ -16,8 +16,13 @@ This plugin expects cards to be enclosed between two horizontal rules (`---`):
 
 ```markdown
 ---
-ADDED: How is the {{c1::probability mass function (pmf)}} defined? %%3l99il%%
-For an at most countable sample space $\Omega$, it maps each outcome to its {{c2::probability}}.
+Cloze
+This is an example {{c1::cloze}} card. You can {{c2::hide}} different text parts {{c2::with ease}}.
+
+---
+
+ADDED: Cloze %%3l99il%%
+This is another {{c1::example}} cloze card.
 
 ---
 
