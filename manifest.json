@@ -1,0 +1,9 @@
+{
+  "id": "anki-cloze",
+  "name": "Anki Cloze Deletion",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Creates Anki-compatible cloze deletions scoped to card blocks between horizontal rules.",
+  "author": "Leon Froschauer",
+  "isDesktopOnly": false
+}
