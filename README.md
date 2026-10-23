@@ -20,7 +20,6 @@ Cloze
 This is an example {{c1::cloze}} card. You can {{c2::hide}} different text parts {{c2::with ease}}.
 
 ---
-
 ADDED: Cloze %%3l99il%%
 This is another {{c1::example}} cloze card.
 
