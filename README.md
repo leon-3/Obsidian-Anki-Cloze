@@ -3,8 +3,7 @@
 [![Release](https://img.shields.io/badge/version-1.0.2-blue?style=flat-square)](https://github.com/leon-3/Obsidian-Anki-Cloze/releases)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/leon-3/Obsidian-Anki-Cloze/blob/main/LICENSE)
 [![Obsidian](https://img.shields.io/badge/Obsidian-1.0.0%2B-informational?style=flat-square)](https://obsidian.md)
-[![Obsidian Store](https://img.shields.io/badge/Obsidian-In--App%20Store-7c3aed?style=flat-square)](obsidian://show-plugin?id=anki-cloze)
-[![Webpage](https://img.shields.io/badge/Obsidian-Store%20Webpage-purple?style=flat-square)](https://community.obsidian.md/plugins/anki-cloze)
+[![Obsidian Community Plugin](https://img.shields.io/badge/Obsidian-Community%20Plugin-purple?style=flat-square)](https://community.obsidian.md/plugins/anki-cloze)
 
 A lightweight Obsidian plugin that gives you fast keyboard shortcuts to create Anki-style clozes (`{{cN::text}}`). It counts cloze numbers per flashcard block instead of across your entire note, so every card automatically starts fresh at `c1`.
 
@@ -27,7 +26,7 @@ It is built for the flashcard syntax used by [Anki-VaultSync](https://github.com
 
 ### Method 1: Obsidian Community Plugins
 1. Open **Settings** > **Community plugins** in Obsidian.
-2. Search for **Anki Cloze Deletion** (or open [Obsidian Plugin Store](obsidian://show-plugin?id=anki-cloze)).
+2. Search for **Anki Cloze Deletion**.
 3. Click **Install**, then **Enable**.
 
 ### Method 2: Manual Installation
