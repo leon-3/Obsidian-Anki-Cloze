@@ -69,7 +69,7 @@ module.exports = class AnkiClozePlugin extends Plugin {
     this.addCommand({
       id: "cloze-same-card",
       name: "Cloze Deletion (same card)",
-      hotkeys: [{ modifiers: ["Mod", "Alt"], key: "V" }],
+      hotkeys: [{ modifiers: ["Mod", "Alt"], key: "C" }],
       editorCallback: (editor) => {
         this.insertCloze(editor, false);
       }
