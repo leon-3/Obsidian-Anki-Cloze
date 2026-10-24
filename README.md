@@ -24,11 +24,12 @@ ADDED: Cloze %%3l99il%%
 This is another {{c1::example}} cloze card.
 
 ---
-
 ```
 
 * **Scoped Indexing:** Cloze numbers (`c1`, `c2`, ...) are counted independently within each `--- ... ---` block. Every new card block starts at `c1`.
-* **Boundary Validation:** Triggering a cloze shortcut outside a `--- ... ---` block displays a brief warning notice and leaves the text unchanged.
+* **Boundary Validation:** Triggering a cloze shortcut outside a `--- ... ---` block displays a warning notice and leaves the text unchanged.
+* **Frontmatter Safety:** YAML frontmatter (the `---` block at the start of a note) is automatically detected and ignored, protecting note metadata.
+* **Nested Cloze Protection:** Multi-layer protection prevents creating nested clozes (e.g. `{{c1::can {{c2::{{c3::happen}}}}}}`), which are invalid in Anki.
 
 ## Syntax & Shortcuts
 
@@ -36,23 +37,22 @@ Syntax: `{{cN::Text}}` where `N` is the card index.
 
 ### 1. Cloze Deletion (new card)
 
-* **Default Shortcut:** `Ctrl + Shift + C`
+* **Default Shortcut:** `Ctrl + Shift + C` (or `Cmd + Shift + C` on macOS)
 * **Behavior:** Increments the highest existing cloze number inside the current card block by 1 (e.g., from `c1` to `c2`, or starts at `c1` if none exist).
 * **Result:** Wraps the selection in `{{cN+1::...}}`, generating a separate flashcard in Anki.
 
 ### 2. Cloze Deletion (same card)
 
-* **Default Shortcut:** `Ctrl + Shift + V`
+* **Default Shortcut:** `Ctrl + Alt + V` (or `Cmd + Option + V` on macOS)
 * **Behavior:** Reuses the highest existing cloze number inside the current card block (defaults to `c1` if none exist).
 * **Result:** Wraps the selection in `{{cN::...}}`. All clozes sharing the same number in a card block are hidden and revealed simultaneously.
 
 ## Settings
 
-* **Custom Shortcuts:** Click either shortcut button in **Settings -> Anki Cloze Deletion** to record a new key combination, or click the reset icon to restore defaults.
+* **Custom Shortcuts:** Shortcuts are registered natively with Obsidian. You can customize them at any time in **Settings -> Hotkeys** by searching for `Anki Cloze`.
 
 ## Installation
 
 1. Create the folder `<Vault>/.obsidian/plugins/anki-cloze/`.
 2. Place `manifest.json`, `main.js`, and `styles.css` inside that folder.
-3. Reload Obsidian and enable **Anki Cloze Deletion** under **Settings -> Community plugins**.
-
+3. Reload Obsidian (`Ctrl + R` / `Cmd + R` or reload plugins under **Settings -> Community plugins**).
