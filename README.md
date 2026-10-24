@@ -61,6 +61,6 @@ Shortcuts are registered natively with Obsidian. You can customize them anytime 
 
 ### Manual Installation
 1. Download `main.js` and `manifest.json` from the latest [GitHub Release](https://github.com/leon-3/Obsidian-Anki-Cloze/releases).
-2. Create the folder `<Vault>/.obsidian/plugins/anki-cloze-deletion/` in your Obsidian vault.
+2. Create the folder `<Vault>/.obsidian/plugins/anki-cloze/` in your Obsidian vault.
 3. Place `manifest.json` and `main.js` inside that folder.
 4. Reload Obsidian or reload plugins under **Settings -> Community plugins**, then toggle **Anki Cloze Deletion** on.
