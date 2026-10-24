@@ -1,66 +1,87 @@
 # Anki Cloze Deletion for Obsidian
 
-A lightweight Obsidian plugin that brings Anki-style cloze deletion shortcuts (`{{cN::text}}`) to your markdown notes, scoped specifically to individual flashcard blocks.
+[![Release](https://img.shields.io/badge/version-1.0.2-blue?style=flat-square)](https://github.com/leon-3/Obsidian-Anki-Cloze/releases)
+[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/leon-3/Obsidian-Anki-Cloze/blob/main/LICENSE)
+[![Obsidian](https://img.shields.io/badge/Obsidian-1.0.0%2B-informational?style=flat-square)](https://obsidian.md)
+[![Obsidian Store](https://img.shields.io/badge/Obsidian-In--App%20Store-7c3aed?style=flat-square)](obsidian://show-plugin?id=anki-cloze)
+[![Webpage](https://img.shields.io/badge/Obsidian-Store%20Webpage-purple?style=flat-square)](https://community.obsidian.md/plugins/anki-cloze)
 
-## Concept & Benefits
+A lightweight Obsidian plugin that gives you fast keyboard shortcuts to create Anki-style clozes (`{{cN::text}}`). It counts cloze numbers per flashcard block instead of across your entire note, so every card automatically starts fresh at `c1`.
 
-A cloze deletion is a fill-in-the-blank flashcard. Instead of formulating explicit question-and-answer pairs, you mask key terms inside a coherent statement or definition.
+It is built for the flashcard syntax used by [Anki-VaultSync](https://github.com/leon-3/Anki-VaultSync) and [Markdown2Anki](https://github.com/leon-3/Markdown2Anki):
+- [Anki Card Styling](https://github.com/leon-3/Obsidian-Anki-Card-Highlighting): Companion plugin that visualizes clozes, card badges, and status lines in Obsidian.
+- [Anki-VaultSync](https://github.com/leon-3/Anki-VaultSync): Desktop add-on for direct sync between your vault and Anki without extra servers.
+- [Markdown2Anki](https://github.com/leon-3/Markdown2Anki): Standalone command-line tool and compiler.
 
-- **Faster Creation:** Mask key concepts directly without inventing artificial question/answer pairs.
-- **Contextual Learning:** Learn facts embedded within their natural context.
-- **Efficiency:** Generate multiple flashcards from a single block of text by incrementing the cloze index.
+---
 
-## Card Structure Requirement
+## Highlights & Key Features
 
-Cards must be enclosed between horizontal rules (`---`):
+- Card-scoped cloze numbers: Numbers (`c1`, `c2`, ...) are tracked inside each card block separated by `---`. Every new card starts back at `c1`.
+- Anki-like hotkeys: Press `Ctrl+Shift+C` to create the next cloze on a new card (`cN+1`), or `Ctrl+Alt+C` to reuse the same number (`cN`) on the current card.
+- Safe editing: Automatically skips YAML frontmatter and stops invalid nested clozes before they reach Anki.
+
+---
+
+## Installation & Quickstart
+
+### Method 1: Obsidian Community Plugins
+1. Open **Settings** > **Community plugins** in Obsidian.
+2. Search for **Anki Cloze Deletion** (or open [Obsidian Plugin Store](obsidian://show-plugin?id=anki-cloze)).
+3. Click **Install**, then **Enable**.
+
+### Method 2: Manual Installation
+1. Download `main.js` and `manifest.json` from the latest [GitHub Release](https://github.com/leon-3/Obsidian-Anki-Cloze/releases).
+2. Create the folder `<Vault>/.obsidian/plugins/anki-cloze/` in your vault.
+3. Place `main.js` and `manifest.json` inside.
+4. Reload Obsidian plugins and turn on **Anki Cloze Deletion**.
+
+---
+
+## Documentation
+
+### Card Syntax & Scoped Delimiters
+The card format recognized by this plugin follows the syntax from [Anki-VaultSync](https://github.com/leon-3/Anki-VaultSync) and [Markdown2Anki](https://github.com/leon-3/Markdown2Anki). For deck routing, note updates, and tag options, check the documentation there.
+
+Cards are separated by standard `---` lines:
 
 ```markdown
 ---
-Cloze
-This is an example {{c1::cloze}} card. You can {{c2::hide}} different text parts {{c2::with ease}}.
+ADDED: Cloze %%a1b2c3%%
+The first card starts at {{c1::c1}} and {{c2::c2}}.
 
 ---
-ADDED: Cloze %%3l99il%%
-This is another {{c1::example}} cloze card.
+Cloze
+The next card starts back at {{c1::c1}} automatically.
 
 ---
 ```
 
-* **Scoped Indexing:** Cloze numbers (`c1`, `c2`, ...) are counted independently within each `--- ... ---` block. Every new card block starts at `c1`.
-* **Boundary Validation:** Triggering a cloze shortcut outside a card block displays a warning notice and leaves text unchanged.
-* **Frontmatter Safety:** YAML frontmatter (the `---` block at the start of a note) is automatically detected and protected.
-* **Nested Cloze Protection:** Multi-layer protection prevents creating nested clozes (e.g. `{{c1::can {{c2::{{c3::happen}}}}}}`), which are invalid in Anki.
+### Keyboard Shortcuts
 
-## Syntax & Shortcuts
+Both commands work on highlighted text or with an empty cursor:
 
-Syntax: `{{cN::Text}}` where `N` is the card index.
+#### 1. Cloze Deletion (new card)
+- Default Shortcut: `Ctrl + Shift + C` (macOS: `Cmd + Shift + C`)
+- Increments the highest cloze number in the current card by 1.
+- Wraps selection in `{{cN+1::...}}`.
 
-Both commands support selected text (wraps the selection) and empty selection (inserts `{{cN::}}` with the cursor placed inside ready to type).
+#### 2. Cloze Deletion (same card)
+- Default Shortcut: `Ctrl + Alt + C` (macOS: `Cmd + Option + C`)
+- Reuses the highest cloze number in the current card.
+- Wraps selection in `{{cN::...}}` so both blanks are tested together.
 
-### 1. Cloze Deletion (new card)
+### Customizing Shortcuts
+Change shortcuts anytime in Obsidian under **Settings** > **Hotkeys** by searching for `Anki Cloze`.
 
-* **Default Shortcut:** `Ctrl + Shift + C` (or `Cmd + Shift + C` on macOS)
-* **Behavior:** Increments the highest existing cloze number inside the current card block by 1 (e.g., from `c1` to `c2`, or starts at `c1` if none exist).
-* **Result:** Wraps the text in `{{cN+1::...}}`, generating a separate flashcard in Anki.
+---
 
-### 2. Cloze Deletion (same card)
+## Development & Building
 
-* **Default Shortcut:** `Ctrl + Alt + C` (or `Cmd + Option + C` on macOS)
-* **Behavior:** Reuses the highest existing cloze number inside the current card block (defaults to `c1` if none exist).
-* **Result:** Wraps the text in `{{cN::...}}`. All clozes sharing the same number in a card block are tested together.
+### Requirements
+- Node.js
 
-## Settings & Customization
-
-Shortcuts are registered natively with Obsidian. You can customize them anytime in **Settings -> Hotkeys** by searching for `Anki Cloze`.
-
-## Installation
-
-### Community Plugins (Recommended once listed)
-1. Open **Settings -> Community plugins** and turn off Restricted mode.
-2. Search for **Anki Cloze Deletion** and click **Install**, then **Enable**.
-
-### Manual Installation
-1. Download `main.js` and `manifest.json` from the latest [GitHub Release](https://github.com/leon-3/Obsidian-Anki-Cloze/releases).
-2. Create the folder `<Vault>/.obsidian/plugins/anki-cloze/` in your Obsidian vault.
-3. Place `manifest.json` and `main.js` inside that folder.
-4. Reload Obsidian or reload plugins under **Settings -> Community plugins**, then toggle **Anki Cloze Deletion** on.
+### Validating Script Syntax
+```bash
+node -c main.js
+```
